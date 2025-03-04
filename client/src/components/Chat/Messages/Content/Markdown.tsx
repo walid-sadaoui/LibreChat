@@ -166,6 +166,31 @@ export const p: React.ElementType = memo(({ children }: TParagraphProps) => {
   return <p className="mb-2 whitespace-pre-wrap">{children}</p>;
 });
 
+const button: React.ElementType = memo(({ children }: { children: React.ReactNode }) => {
+  return (
+    <button 
+      className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+      onClick={() => console.log('Button clicked:', children)}
+    >
+      {children}
+    </button>
+  );
+});
+
+// Plugin remark pour détecter les boutons
+const remarkButton = () => {
+  return (tree: any) => {
+    visit(tree, 'text', (node: any) => {
+      const matches = node.value.match(/\[button\](.*?)\[\/button\]/);
+      if (matches) {
+        node.type = 'button';
+        node.value = matches[1];
+        delete node.children;
+      }
+    });
+  };
+};
+
 const cursor = ' ';
 
 type TContentProps = {
@@ -234,6 +259,7 @@ const Markdown = memo(({ content = '', showCursor, isLatestMessage }: TContentPr
               code,
               a,
               p,
+              button,
               artifact: Artifact,
             } as {
               [nodeType: string]: React.ElementType;

@@ -93,6 +93,15 @@ export default function FilterPrompts({
         isSearching={isSearching}
         placeholder={localize('com_ui_filter_prompts_name')}
       />
+      <AnimatedSearchInput
+        value={displayName}
+        onChange={(e) => {
+          setDisplayName(e.target.value);
+          setName(e.target.value);
+        }}
+        isSearching={isSearching}
+        placeholder={localize('com_ui_filter_prompts_name')}
+      />
     </div>
   );
 }

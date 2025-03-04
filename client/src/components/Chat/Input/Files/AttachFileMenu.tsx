@@ -88,6 +88,7 @@ const AttachFile = ({ isRTL, disabled, handleFileChange }: AttachFileProps) => {
         >
           <div className="flex w-full items-center justify-center gap-2">
             <AttachmentIcon />
+            <AttachmentIcon />
           </div>
         </Ariakit.MenuButton>
       }

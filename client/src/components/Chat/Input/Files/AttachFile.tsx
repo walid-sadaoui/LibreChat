@@ -48,6 +48,7 @@ const AttachFile = ({
       >
         <div className="flex w-full items-center justify-center gap-2">
           <AttachmentIcon />
+          <AttachmentIcon />
         </div>
       </TooltipAnchor>
     </FileUpload>
